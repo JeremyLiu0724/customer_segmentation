@@ -132,8 +132,8 @@ st.plotly_chart(fig)
 
 # Clusters by PCA components - using Plotly
 st.markdown('### Clusters by PCA Components')
-x_axis_component = st.selectbox('X-axis', [f'Component {i+1}' for i in range(n_components)])
-y_axis_component = st.selectbox('Y-axis', [f'Component {i+1}' for i in range(n_components)])
+x_axis_component = st.selectbox('X-axis', [f'Component {i+1}' for i in range(n_components)], index = 0)
+y_axis_component = st.selectbox('Y-axis', [f'Component {i+1}' for i in range(n_components)], index = 1)
 
 fig = px.scatter(df_segm_pca_kmeans, 
                  x=x_axis_component, 
@@ -148,17 +148,25 @@ st.plotly_chart(fig)
 st.markdown("---")  # Horizontal line separator
 st.markdown("### Additional Resources")
 st.markdown("""
-For more details on segmentation analysis, check out my [Kaggle notebook](https://www.kaggle.com/your-kaggle-profile/notebook-name).
+For more details on segmentation analysis, check out my [Kaggle notebook](https://www.kaggle.com/code/jeremyliu1989/customer-analytics-segmentation).
 
-You can find the source code for this Streamlit app on my [GitHub repository](https://github.com/your-github-profile/repository-name).
+You can find the source code for this Streamlit app on my [GitHub repository](https://github.com/JeremyLiu0724/customer_segmentation).
+
+If you have any feedback, suggestions, or feature requests, feel free to open an issue in the [GitHub repository](https://github.com/JeremyLiu0724/customer_segmentation/issues). Your input is valuable and will help improve the tool!
 """)
 
-# Custom style to align footer to the center
+# Custom style to position the footer in the lower right corner
 st.markdown("""
     <style>
-    .footer { text-align: center; margin-top: 50px; }
+    .footer { 
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        text-align: right;
+        font-size: 14px;
+    }
     </style>
     <div class="footer">
-        <p>Enjoy Data Science ❤️
+        <p>Enjoy Data Science ❤️</p>
     </div>
 """, unsafe_allow_html=True)

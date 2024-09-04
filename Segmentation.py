@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
+import io
 
 # Custom style for the Streamlit app
 st.markdown("<style> .right-align { float: right; } </style> <p class='right-align'>Streamlit App by <a href='https://www.linkedin.com/in/ziyu-jeremy-liu/'>Jeremy Liu</a></p>", unsafe_allow_html=True)
@@ -27,12 +28,20 @@ st.write("""
 # Default CSV file
 default_csv = "segmentation data.csv"
 
+# Read default CSV file content
+@st.cache_data
+def load_default_csv():
+    return pd.read_csv(default_csv)
+
+def get_csv_bytes(df):
+    csv_buffer = io.StringIO()
+    df.to_csv(csv_buffer, index=False)
+    return csv_buffer.getvalue().encode('utf-8')
+
 # Move file uploader to sidebar
 st.sidebar.header('Upload your dataset')
 uploaded_file = st.sidebar.file_uploader("Choose a CSV file", type=["csv"], accept_multiple_files=False)
 
-# Cache data loading
-@st.cache_data
 def load_data(file):
     return pd.read_csv(file, index_col=0)
 
@@ -42,6 +51,18 @@ if uploaded_file is not None:
 else:
     df_segmentation = load_data(default_csv)
     st.sidebar.warning(f"No file uploaded. Using default file: {default_csv}")
+
+# Display download button only if no file is uploaded
+if uploaded_file is None:
+    st.sidebar.header('Download Default Dataset')
+    default_df = load_default_csv()
+    csv_bytes = get_csv_bytes(default_df)
+    st.sidebar.download_button(
+        label="segmentation data.csv",
+        data=csv_bytes,
+        file_name=default_csv,
+        mime="text/csv"
+    )
 
 # Sidebar: Select PCA components
 st.sidebar.header('PCA Components')

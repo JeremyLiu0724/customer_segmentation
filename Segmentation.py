@@ -152,20 +152,8 @@ For more details on segmentation analysis, check out my [Kaggle notebook](https:
 You can find the source code for this Streamlit app on my [GitHub repository](https://github.com/JeremyLiu0724/customer_segmentation).
 
 If you have any feedback, suggestions, or feature requests, feel free to open an issue in the [GitHub repository](https://github.com/JeremyLiu0724/customer_segmentation/issues). Your input is valuable and will help improve the tool!
-""")
 
-# Custom style to position the footer in the lower right corner
-st.markdown("""
-    <style>
-    .footer { 
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        text-align: right;
-        font-size: 14px;
-    }
-    </style>
-    <div class="footer">
-        <p>Enjoy Data Science ❤️</p>
-    </div>
+<div style="text-align: right;">
+    Enjoy Data Science ❤️
+</div>
 """, unsafe_allow_html=True)

@@ -14,7 +14,7 @@ This repository contains a Streamlit application for performing customer segment
 
 ## Getting Started
 
-Live Demo
+### Live Demo
 You can check out the live version of this app here: https://jeremyliu-customersegmentation.streamlit.app/
 
 ### Prerequisites
